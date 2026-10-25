@@ -20,11 +20,15 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
 
+
 const db = mysql.createConnection({
-    host: process.env.DB_HOST || "localhost",
-    user: process.env.DB_USER || "root",
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME || "vehicle_tracking"
+  host: process.env.DB_HOST || "localhost",
+  user: process.env.DB_USER || "root",
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME || "vehicle_tracking",
+  ssl: {
+    rejectUnauthorized: true
+  }
 });
 
 db.connect((err) => {
