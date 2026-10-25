@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle License & Maintenance Tracking System</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#1565c0">
+    <link rel="manifest" href="/manifest.json">
+</head>
+
+<body>
+<section id="authSection" class="auth-section">
+    <div class="form-box auth-box">
+        <h2>Vehicle Tracking System</h2>
+        <p>Manage your vehicles, driving license, PUC and service records.</p>
+
+        <div id="loginForm">
+            <h3>Login</h3>
+            <label for="loginEmail">Email</label>
+            <input type="email" id="loginEmail" placeholder="Enter your email">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" placeholder="Enter your password">
+            <button type="button" onclick="loginUser()">Login</button>
+            <p>Don't have an account?
+                <button type="button" class="secondary-button" onclick="showAuthForm('registerForm')">Register</button>
+            </p>
+        </div>
+
+        <div id="registerForm" class="hidden">
+            <h3>Create Account</h3>
+            <label for="registerName">Full Name</label>
+            <input type="text" id="registerName" placeholder="Enter your name">
+            <label for="registerEmail">Email</label>
+            <input type="email" id="registerEmail" placeholder="Enter your email">
+            <label for="registerPhone">Phone</label>
+            <input type="tel" id="registerPhone" placeholder="Enter your phone number">
+            <label for="registerPassword">Password</label>
+            <input type="password" id="registerPassword" placeholder="At least 8 characters">
+            <button type="button" onclick="registerUser()">Create Account</button>
+            <p>Already registered?
+                <button type="button" class="secondary-button" onclick="showAuthForm('loginForm')">Back to Login</button>
+            </p>
+        </div>
+        <p id="authMessage" role="status"></p>
+    </div>
+</section>
+
+<div id="appContent" class="hidden">
+    <header>
+        <h1>Vehicle Tracking System</h1>
+        <p>Vehicles, driving license, PUC and service management</p>
+    </header>
+
+    <nav>
+        <button onclick="showSection('dashboard')">Dashboard</button>
+        <button onclick="showSection('vehicles')">Vehicles</button>
+        <button onclick="showSection('license')">Driving License</button>
+        <button onclick="showSection('puc')">PUC</button>
+        <button onclick="showSection('service')">Service</button>
+        <button onclick="showSection('alerts')">Alerts</button>
+    </nav>
+
+    <main>
+        <div id="expiryNotice" class="notice hidden" role="status"></div>
+
+        <section id="dashboard" class="section">
+            <h2>Dashboard</h2>
+            <div class="cards">
+                <div class="card"><h3>Total Vehicles</h3><p id="vehicleCount">0</p></div>
+                <div class="card"><h3>License Alerts</h3><p id="licenseAlerts">0</p></div>
+                <div class="card"><h3>PUC Alerts</h3><p id="pucAlerts">0</p></div>
+                <div class="card"><h3>Service Records</h3><p id="serviceCount">0</p></div>
+                <div class="card"><h3>Pending Alerts</h3><p id="pendingAlerts">0</p></div>
+            </div>
+            <h3 class="subheading">Expiry reminders</h3>
+            <div id="dashboardAlerts"></div>
+        </section>
+
+        <section id="vehicles" class="section hidden">
+            <h2>Vehicle Management</h2>
+            <div class="form-box">
+                <h3 id="vehicleFormTitle">Add Vehicle</h3>
+                <input type="hidden" id="vehicleId">
+                <p>Your vehicle is linked to your account automatically.</p>
+
+                <label for="registrationNumber">Registration Number *</label>
+                <input type="text" id="registrationNumber" placeholder="Example: TN11AB1234" required>
+
+                <label for="vehicleType">Vehicle Type</label>
+                <select id="vehicleType">
+                    <option value="Car">Car</option>
+                    <option value="Bike">Bike</option>
+                    <option value="Truck">Truck</option>
+                    <option value="Bus">Bus</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="brand">Brand</label>
+                <input type="text" id="brand" placeholder="Example: Hyundai">
+                <label for="model">Model</label>
+                <input type="text" id="model" placeholder="Example: i20">
+                <label for="manufacturingYear">Manufacturing Year</label>
+                <input type="number" id="manufacturingYear" min="1900" max="2100" placeholder="Example: 2022">
+
+                <h3 class="subheading">PUC Details (Optional)</h3>
+                <p>You can leave these fields blank and add the PUC details later.</p>
+                <label for="vehiclePucNumber">PUC Certificate Number</label>
+                <input type="text" id="vehiclePucNumber" placeholder="Enter PUC number if available">
+                <label for="vehiclePucIssueDate">PUC Issue Date</label>
+                <input type="date" id="vehiclePucIssueDate">
+                <label for="vehiclePucExpiryDate">PUC Expiry Date</label>
+                <input type="date" id="vehiclePucExpiryDate">
+
+                <button type="button" onclick="saveVehicle()">Save Vehicle</button>
+                <button type="button" class="secondary-button" onclick="clearVehicleForm()">Clear</button>
+            </div>
+
+            <h3 class="subheading">Your Vehicles</h3>
+            <button type="button" onclick="loadVehicles()">Refresh Vehicles</button>
+            <div id="vehicleList"></div>
+        </section>
+
+        <section id="license" class="section hidden">
+            <h2>Driving License</h2>
+            <p>Your driving license belongs to you as the account holder, not to an individual vehicle.</p>
+            <div class="form-box">
+                <h3>Add or Renew Driving License</h3>
+                <label for="licenseNumber">License Number *</label>
+                <input type="text" id="licenseNumber" placeholder="Enter license number">
+                <label for="licenseIssueDate">Issue Date *</label>
+                <input type="date" id="licenseIssueDate">
+                <label for="licenseExpiryDate">Expiry Date *</label>
+                <input type="date" id="licenseExpiryDate">
+                <button type="button" onclick="addLicense()">Save / Renew License</button>
+            </div>
+            <h3 class="subheading">Your License Record</h3>
+            <div id="licenseList"></div>
+        </section>
+
+        <section id="puc" class="section hidden">
+            <h2>PUC Certificates</h2>
+            <p>Every saved vehicle appears here. Vehicles without PUC details can be updated whenever the certificate is available.</p>
+            <div id="pucList"></div>
+        </section>
+
+        <section id="vehicleProfile" class="section hidden">
+            <button type="button" class="secondary-button" onclick="showSection('vehicles')">Back to Vehicles</button>
+            <h2 id="profileTitle">Vehicle Profile</h2>
+            <div id="profileContent"></div>
+        </section>
+
+        <section id="service" class="section hidden">
+            <h2>Service Records</h2>
+            <div class="form-box">
+                <h3>Add Service Record</h3>
+                <label for="serviceVehicleId">Vehicle *</label>
+                <select id="serviceVehicleId"><option value="">Select a vehicle</option></select>
+                <label for="serviceDate">Service Date *</label>
+                <input type="date" id="serviceDate">
+                <label for="serviceType">Service Type</label>
+                <input type="text" id="serviceType" placeholder="General service">
+                <label for="serviceCost">Cost (₹)</label>
+                <input type="number" step="0.01" min="0" id="serviceCost">
+                <label for="odometerReading">Odometer Reading (km)</label>
+                <input type="number" min="0" id="odometerReading">
+                <label for="serviceDescription">Description</label>
+                <textarea id="serviceDescription" placeholder="Service details"></textarea>
+                <button type="button" onclick="addService()">Add Service</button>
+            </div>
+            <h3 class="subheading">Service History</h3>
+            <div id="serviceList"></div>
+        </section>
+
+        <section id="alerts" class="section hidden">
+            <h2>Expiry Alerts</h2>
+            <p>Reminders for driving licenses and PUC certificates expiring within the next seven days, including already-expired documents.</p>
+            <button type="button" onclick="loadAlerts()">Refresh Alerts</button>
+            <div id="alertList"></div>
+        </section>
+    </main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

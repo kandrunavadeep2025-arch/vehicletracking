@@ -1,0 +1,704 @@
+
+    /* =========================================
+    VEHICLE LICENSE & MAINTENANCE TRACKER
+    Main stylesheet
+    ========================================= */
+
+    :root {
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --primary-light: #dbeafe;
+        --background: #f3f6fb;
+        --surface: #ffffff;
+        --text: #172033;
+        --muted: #64748b;
+        --border: #dce3ed;
+        --success: #15803d;
+        --success-bg: #dcfce7;
+        --warning: #b45309;
+        --warning-bg: #fef3c7;
+        --danger: #b91c1c;
+        --danger-bg: #fee2e2;
+        --shadow: 0 5px 20px rgba(15, 23, 42, 0.06);
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        margin: 0;
+        background: var(--background);
+        color: var(--text);
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+        font: inherit;
+    }
+
+    button {
+        cursor: pointer;
+    }
+
+    button:disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
+    }
+
+    .hidden {
+        display: none !important;
+    }
+
+    /* =========================================
+    AUTHENTICATION
+    ========================================= */
+
+    #authSection {
+        width: min(440px, calc(100% - 32px));
+        margin: 55px auto;
+        padding: 28px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+    }
+
+    #authSection h1,
+    #authSection h2 {
+        margin-top: 0;
+        text-align: center;
+    }
+
+    #authSection h1 {
+        color: var(--primary);
+        font-size: 27px;
+    }
+
+    #authSection h2 {
+        font-size: 21px;
+    }
+
+    #authSection form {
+        display: grid;
+        gap: 12px;
+    }
+
+    #authSection label {
+        margin-top: 5px;
+        font-weight: 600;
+    }
+
+    #authSection p {
+        text-align: center;
+    }
+
+    /* =========================================
+    HEADER
+    ========================================= */
+
+    header {
+        padding: 22px 5%;
+        color: #ffffff;
+        background: linear-gradient(120deg, #1d4ed8, #2563eb, #3b82f6);
+        box-shadow: 0 3px 12px rgba(37, 99, 235, 0.18);
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: clamp(23px, 3vw, 31px);
+        font-weight: 700;
+    }
+
+    header p {
+        margin: 5px 0 0;
+        color: #eaf2ff;
+    }
+
+    #accountBar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 12px;
+    }
+
+
+#accountBar button {
+    color: #ffffff;
+    border: 1px solid #000000;
+    background: #000000;
+}
+
+#accountBar button:hover {
+    color: #ffffff;
+    border-color: #333333;
+    background: #333333;
+}
+
+    /* =========================================
+    NAVIGATION
+    ========================================= */
+
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 12px 5%;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+    }
+
+    nav button {
+        padding: 10px 15px;
+        color: #475569;
+        background: transparent;
+        border: 0;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: background 0.2s, color 0.2s;
+    }
+
+    nav button:hover,
+    nav button.active {
+        color: var(--primary-dark);
+        background: var(--primary-light);
+    }
+
+    /* =========================================
+    MAIN CONTENT
+    ========================================= */
+
+    main,
+    #appContent > .container {
+        width: min(1200px, 92%);
+        margin: 26px auto 45px;
+    }
+
+    .section {
+        margin-bottom: 28px;
+    }
+
+    .section h2 {
+        margin: 0 0 18px;
+        font-size: 25px;
+    }
+
+    .section h3 {
+        margin-top: 0;
+        font-size: 19px;
+    }
+
+    .section > p {
+        color: var(--muted);
+    }
+
+    /* =========================================
+    NOTICES AND MESSAGES
+    ========================================= */
+
+    #expiryNotice {
+        margin: 0 0 22px;
+        padding: 15px 18px;
+        border: 1px solid #f59e0b;
+        border-radius: 10px;
+        color: #92400e;
+        background: var(--warning-bg);
+        font-weight: 600;
+    }
+
+    #authMessage,
+    .message,
+    .form-message {
+        margin: 12px 0;
+        padding: 10px 13px;
+        border-radius: 8px;
+    }
+
+    .error,
+    .message.error {
+        color: var(--danger);
+        background: var(--danger-bg);
+    }
+
+    .success,
+    .message.success {
+        color: var(--success);
+        background: var(--success-bg);
+    }
+
+    /* =========================================
+    DASHBOARD CARDS
+    ========================================= */
+
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+        gap: 18px;
+        margin-bottom: 28px;
+    }
+
+    .card {
+        padding: 22px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 13px;
+        box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+        margin: 0 0 10px;
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .card p,
+    .card .count {
+        margin: 0;
+        color: var(--primary-dark);
+        font-size: 29px;
+        font-weight: 700;
+        overflow-wrap: anywhere;
+    }
+
+    #dashboardAlerts,
+    #alertList {
+        display: grid;
+        gap: 12px;
+    }
+
+    /* =========================================
+    FORMS
+    ========================================= */
+
+    .form-box {
+        margin-bottom: 25px;
+        padding: 24px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 13px;
+        box-shadow: var(--shadow);
+    }
+
+    .form-box form {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 15px;
+    }
+
+    .form-box label,
+    form > label {
+        display: block;
+        margin-bottom: 5px;
+        color: #334155;
+        font-weight: 600;
+    }
+
+    input,
+    select,
+    textarea {
+        display: block;
+        width: 100%;
+        min-width: 0;
+        padding: 11px 12px;
+        color: var(--text);
+        background: #ffffff;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        outline: none;
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+
+    textarea {
+        min-height: 90px;
+        resize: vertical;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+        color: #94a3b8;
+    }
+
+    .form-box button {
+        align-self: end;
+    }
+
+    button,
+    .btn {
+        padding: 10px 15px;
+        color: #ffffff;
+        background: var(--primary);
+        border: 1px solid var(--primary);
+        border-radius: 8px;
+        font-weight: 600;
+        transition: background 0.2s, transform 0.1s;
+    }
+
+    button:hover,
+    .btn:hover {
+        background: var(--primary-dark);
+        border-color: var(--primary-dark);
+    }
+
+    button:active {
+        transform: translateY(1px);
+    }
+
+    button.secondary,
+    .btn-secondary {
+        color: #334155;
+        background: #f1f5f9;
+        border-color: #cbd5e1;
+    }
+
+    button.secondary:hover,
+    .btn-secondary:hover {
+        background: #e2e8f0;
+    }
+
+    button.danger,
+    .btn-danger {
+        color: #ffffff;
+        background: #dc2626;
+        border-color: #dc2626;
+    }
+
+    button.danger:hover,
+    .btn-danger:hover {
+        background: #b91c1c;
+    }
+
+    .form-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+        grid-column: 1 / -1;
+    }
+
+    .form-box form > button,
+    .form-box form > .form-actions {
+        grid-column: 1 / -1;
+    }
+
+    /* =========================================
+    VEHICLES AND GENERAL RECORD CARDS
+    ========================================= */
+
+    #vehicleList,
+    #pucList,
+    #licenseList,
+    #serviceList {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        align-items: start;
+        gap: 18px;
+    }
+
+    .vehicle-card,
+    .record-card,
+    .puc-card,
+    .license-card,
+    .service-card,
+    .alert-card {
+        min-width: 0;
+        padding: 20px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+    }
+
+    .vehicle-card h3,
+    .record-card h3,
+    .puc-card h3,
+    .license-card h3,
+    .service-card h3,
+    .alert-card h3 {
+        margin: 0 0 12px;
+        overflow-wrap: anywhere;
+    }
+
+    .vehicle-card p,
+    .record-card p,
+    .puc-card p,
+    .license-card p,
+    .service-card p,
+    .alert-card p {
+        margin: 7px 0;
+        overflow-wrap: anywhere;
+    }
+
+    .vehicle-card .actions,
+    .card-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 16px;
+    }
+
+    .vehicle-card button,
+    .card-actions button {
+        padding: 8px 12px;
+    }
+
+    /* =========================================
+    TABLES
+    ========================================= */
+
+    .table-wrapper {
+        width: 100%;
+        overflow-x: auto;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        background: #ffffff;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #ffffff;
+    }
+
+    th,
+    td {
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--border);
+        text-align: left;
+        vertical-align: top;
+    }
+
+    th {
+        color: #334155;
+        background: #f8fafc;
+        font-size: 13px;
+        white-space: nowrap;
+    }
+
+    td {
+        overflow-wrap: anywhere;
+    }
+
+    tr:last-child td {
+        border-bottom: 0;
+    }
+
+    tbody tr:hover {
+        background: #f8fafc;
+    }
+
+    /* =========================================
+    STATUS LABELS
+    ========================================= */
+
+    .status,
+    .badge {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    .status.valid,
+    .status.active,
+    .badge.valid {
+        color: var(--success);
+        background: var(--success-bg);
+    }
+
+    .status.expired,
+    .status.danger,
+    .badge.expired {
+        color: var(--danger);
+        background: var(--danger-bg);
+    }
+
+    .status.expiring-soon,
+    .status.warning,
+    .badge.warning {
+        color: var(--warning);
+        background: var(--warning-bg);
+    }
+
+    .status.not-added,
+    .status.pending,
+    .badge.neutral {
+        color: #475569;
+        background: #e2e8f0;
+    }
+
+    /* =========================================
+    VEHICLE PROFILE
+    ========================================= */
+
+    #vehicleProfile {
+        margin-top: 24px;
+    }
+
+    #profileTitle {
+        margin-bottom: 18px;
+    }
+
+    #profileContent {
+        display: grid;
+        gap: 18px;
+    }
+
+    #profileContent > .card,
+    #profileContent > .profile-card {
+        padding: 22px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+    }
+
+    #profileContent h3 {
+        margin-top: 0;
+    }
+
+    #profileContent p {
+        margin: 8px 0;
+        overflow-wrap: anywhere;
+    }
+
+    .profile-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 16px;
+    }
+
+    .profile-grid > div {
+        padding: 15px;
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 9px;
+    }
+
+    /* =========================================
+    ALERTS
+    ========================================= */
+
+    .alert-card {
+        border-left: 5px solid #f59e0b;
+    }
+
+    .alert-card.expired {
+        border-left-color: #dc2626;
+    }
+
+    .alert-card h3 {
+        color: #92400e;
+    }
+
+    .alert-card.expired h3 {
+        color: var(--danger);
+    }
+
+    .alert-card .alert-date {
+        color: var(--muted);
+        font-size: 13px;
+    }
+
+    /* =========================================
+    EMPTY STATES
+    ========================================= */
+
+    .empty-state,
+    .no-records {
+        grid-column: 1 / -1;
+        padding: 25px;
+        color: var(--muted);
+        text-align: center;
+        background: var(--surface);
+        border: 1px dashed #cbd5e1;
+        border-radius: 10px;
+    }
+
+    /* =========================================
+    FOOTER
+    ========================================= */
+
+    footer {
+        padding: 22px;
+        color: var(--muted);
+        text-align: center;
+    }
+
+    /* =========================================
+    RESPONSIVE LAYOUT
+    ========================================= */
+
+    @media (max-width: 700px) {
+        header {
+            padding: 20px 4%;
+        }
+
+        nav {
+            padding: 10px 4%;
+            gap: 5px;
+        }
+
+        nav button {
+            padding: 9px 11px;
+            font-size: 13px;
+        }
+
+        main,
+        #appContent > .container {
+            width: 92%;
+            margin-top: 20px;
+        }
+
+        .form-box {
+            padding: 17px;
+        }
+
+        .form-box form {
+            grid-template-columns: 1fr;
+        }
+
+        .form-box form > button,
+        .form-box form > .form-actions {
+            grid-column: auto;
+        }
+
+        #vehicleList,
+        #pucList,
+        #licenseList,
+        #serviceList {
+            grid-template-columns: 1fr;
+        }
+
+        .card {
+            padding: 18px;
+        }
+
+        .section h2 {
+            font-size: 22px;
+        }
+
+        #authSection {
+            margin: 25px auto;
+            padding: 21px;
+        }
+    }

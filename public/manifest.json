@@ -1,0 +1,12 @@
+
+{
+  "id": "/",
+  "name": "Vehicle Tracking and Maintenance",
+  "short_name": "Vehicle Tracker",
+  "description": "Track vehicles, maintenance, licence and PUC expiry alerts.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1565c0"
+}
